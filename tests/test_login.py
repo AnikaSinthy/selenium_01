@@ -1,17 +1,19 @@
 import time
 
-from tests.base_test import Base_Page
+from tests.base_test import Base_Test
 from pages.login_page import LoginPage
 from testdata.test_data import TestData as DATA
 
 
-class LoginTest(Base_Page):
+class LoginTest(Base_Test):
 
     def test_valid_login(self):
         lp = LoginPage(self.driver)
         lp.enter_username(DATA.VALID_USERNAME)
         lp.enter_password(DATA.VALID_PASSWORD)
         lp.click_on_submit_button()
+        lp.verify_the_we_are_logedin_successfully()
+        time.sleep(5)
 
     def test_invalid_login_01(self):
         # self.driver.find_element(By.NAME, "username").send_keys("student1")
